@@ -1,0 +1,18 @@
+This is a work-in-progress implementation of HTTP JSON-RPC in Google Go. Any help is appreciated.
+
+Packages details:
+-httpjsonrpc - package for using HTTP JSON-RPC
+	+httpjsonrpc.go - currenctly contains simple method for calling JSON-RPC through a HTTP POST
+	+test.go - leftover code - sample use, sample call with predefined parameters
+-BitcoinJSON - sample uses of the package for Bitcoind server
+
+Useful links:
+-Original code - http://stackoverflow.com/questions/8918455/how-to-properly-call-json-rpc-in-go
+-Bitcoind JSON call list - https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list
+-Example request - https://en.bitcoin.it/wiki/Elis-API#Example_Request
+
+
+Progress so far:
+-Simple calls are working
+
+Thanks to tux21b for the initial code.
