@@ -2,7 +2,8 @@ This is a work-in-progress implementation of HTTP JSON-RPC in Google Go. Any hel
 
 Packages details:
 -httpjsonrpc - package for using HTTP JSON-RPC
-	+httpjsonrpc.go - currenctly contains simple method for calling JSON-RPC through a HTTP POST
+	+httpjsonrpcClient.go - currently contains a simple method for calling JSON-RPC through a HTTP POST
+	+httpjsonrpcServer.go - currently contains a simple method for receiving JSON-RPC through a HTTP POST
 	+test.go - leftover code - sample use, sample call with predefined parameters
 -BitcoinJSON - sample uses of the package for Bitcoind server
 
