@@ -1,4 +1,4 @@
-package httpjsonrpc
+package gaehttpjsonrpc
 
 import(
 	"http"

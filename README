@@ -5,15 +5,22 @@ Packages details:
 	+httpjsonrpcClient.go - currently contains a simple method for calling JSON-RPC through a HTTP POST
 	+httpjsonrpcServer.go - currently contains a simple method for receiving JSON-RPC through a HTTP POST
 	+test.go - leftover code - sample use, sample call with predefined parameters
--BitcoinJSON - sample uses of the package for Bitcoind server
+-BitcoinJSON - sample uses of the httpjsonrpc package for Bitcoind server
+-gaehttpjsonrpc - package for using HTTP JSON-RPC on Google App Engine
+	+gaehttpjsonrpcClient.go - currently contains two simple method for calling JSON-RPC through a HTTP POST, one with Basic Access Authentication and one without
+	+gaehttpjsonrpcServer.go - currently contains a simple method for receiving JSON-RPC through a HTTP POST
+-GAEBitcoinJSON - sample uses of the gaehttpjsonrpc package for Bitcoind server
 
 Useful links:
 -Original code - http://stackoverflow.com/questions/8918455/how-to-properly-call-json-rpc-in-go
 -Bitcoind JSON call list - https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list
 -Example request - https://en.bitcoin.it/wiki/Elis-API#Example_Request
+-Discussion about POSTs on Google App Engine - http://stackoverflow.com/questions/9074356/gae-golang-http-json-rpc-call-works-in-the-dev-appserver-but-not-on-the-app-e
 
 
 Progress so far:
 -Simple calls are working
+-Client packages have been tested on dev_appserver and Google App Engine a bit
 
 Thanks to tux21b for the initial code.
+Thanks to proppy for help with Google App Engine code problems
