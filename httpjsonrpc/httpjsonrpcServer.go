@@ -10,6 +10,7 @@ import(
 //multiplexer that keeps track of every function to be called on specific rpc call
 type ServeMux struct {
 		m map[string]func(*http.Request, map[string]interface{})(map[string]interface{})
+		defaultFunction func (http.ResponseWriter, *http.Request)
 }
 
 //an instance of the multiplexer
@@ -19,14 +20,43 @@ var mainMux ServeMux
 func HandleFunc(pattern string, handler func(*http.Request, map[string]interface{})(map[string]interface{})){
 	mainMux.m[pattern]=handler
 }
+//a function to be called if the request is not a HTTP JSON RPC call
+func SetDefaultFunc(def func(http.ResponseWriter, *http.Request)){
+	mainMux.defaultFunction=def
+}
 
 //this is the funciton that should be called in order to answer an rpc call
 //should be registered like "http.HandleFunc("/", httpjsonrpc.Handle)"
 func Handle(w http.ResponseWriter, r *http.Request){
+	
+	//JSON RPC commands should be POSTs
+    if r.Method!="POST"{
+    	if mainMux.defaultFunction!=nil{
+    		log.Printf("HTTP JSON RPC Handle - Method!=\"POST\"")
+    		mainMux.defaultFunction(w, r)
+    		return
+    	} else {
+    		log.Panicf("HTTP JSON RPC Handle - Method!=\"POST\"")
+    		return
+    	}
+    }
+    
+    //We must check if there is Request Body to read
+    if r.Body==nil{
+    	if mainMux.defaultFunction!=nil{
+    		log.Printf("HTTP JSON RPC Handle - Request body is nil")
+    		mainMux.defaultFunction(w, r)
+    		return
+    	} else {
+    		log.Panicf("HTTP JSON RPC Handle - Request body is nil")
+    		return
+    	}
+    }
+	
 	//read the body of the request
     body, err:= ioutil.ReadAll(r.Body)
-    log.Println(r)
-    log.Println(body)
+    //log.Println(r)
+    //log.Println(body)
     if err!=nil{
         log.Fatalf("HTTP JSON RPC Handle - ioutil.ReadAll: %v", err)
         return
