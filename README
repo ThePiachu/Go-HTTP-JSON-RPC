@@ -1,3 +1,5 @@
+EDIT: Bitcoin-spacific API has been moved to https://github.com/ThePiachu/GoBitcoinAPI .
+
 This is a work-in-progress implementation of HTTP JSON-RPC in Google Go. Any help is appreciated.
 
 Packages details:
